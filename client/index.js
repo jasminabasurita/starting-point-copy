@@ -16,5 +16,41 @@ const map = new mapboxgl.Map({
 const marker = buildMarker("activities", fullstackCoords);
 marker.addTo(map);
 
+const hotelChoices = document.getElementById('hotels-choices')
+const activityChoices = document.getElementById('activities-choices')
+const restaurantChoices = document.getElementById('restaurants-choices')
 
-fetch('/api/')
+function createOption(itemObj) {
+  const option = document.createElement('option')
+  option.innerHTML = itemObj.name
+  return option
+}
+
+
+function newSelectOptions(itemsArr, type) {
+  if (type === 'hotel') {
+    itemsArr.forEach(itemObj => {
+      hotelChoices.appendChild(createOption(itemObj))
+    })
+  }
+  if (type === 'activity') {
+    itemsArr.forEach(itemObj => {
+      activityChoices.appendChild(createOption(itemObj))
+    })
+  }
+  if (type === 'restaurant') {
+    itemsArr.forEach(itemObj => {
+      restaurantChoices.appendChild(createOption(itemObj))
+    })
+  }
+}
+
+
+fetch('/api/attractions')
+  .then(result => result.json())
+  .then(data => {
+    newSelectOptions(data.hotels, 'hotel')
+    newSelectOptions(data.activities, 'activity')
+    newSelectOptions(data.restaurants, 'restaurant')
+  })
+  .catch(console.error)
