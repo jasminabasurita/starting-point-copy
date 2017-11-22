@@ -559,6 +559,7 @@ const restaurantChoices = document.getElementById('restaurants-choices')
 function createOption(itemObj) {
   const option = document.createElement('option')
   option.innerHTML = itemObj.name
+  option.value = itemObj.id
   return option
 }
 
@@ -590,6 +591,11 @@ fetch('/api/attractions')
     newSelectOptions(data.restaurants, 'restaurant')
   })
   .catch(console.error)
+
+// document.getElementsByClassName('options-btn')
+
+const hotelButton = doc
+
 
 
 /***/ }),

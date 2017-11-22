@@ -4,9 +4,10 @@ const morgan = require('morgan')
 const app = express()
 const { db } = require('./models')
 const router = require('./routes')
-
-
 const path = require('path')
+
+
+
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
